@@ -20,6 +20,7 @@ import {
   LogOut,
   Settings,
   ClipboardList,
+  Bell,
 } from "lucide-react"
 
 const navItems = [
@@ -32,6 +33,7 @@ const navItems = [
   { label: "Personal", href: "/admin/personal", icon: Users },
   { label: "Reportes", href: "/admin/reportes", icon: FileBarChart },
   { label: "Devoluciones", href: "/admin/devoluciones", icon: RotateCcw },
+  { label: "Notificaciones", href: "/admin/notificaciones", icon: Bell },
 ]
 
 function SidebarContent() {
