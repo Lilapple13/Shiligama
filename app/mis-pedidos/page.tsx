@@ -85,7 +85,7 @@ const sampleOrders: CustomerOrder[] = [
     timeline: {
       pedidoRecibido: new Date(2024, 11, 14, 10, 15),
       enPreparacion: new Date(2024, 11, 14, 10, 30),
-      listo: new Date(2024, 11, 14, 11, 00),
+      listo: new Date(2024, 11, 14, 11, 0),
       enCamino: new Date(2024, 11, 14, 11, 15),
     }
   },
@@ -105,7 +105,7 @@ const sampleOrders: CustomerOrder[] = [
     paymentMethod: "efectivo",
     timeline: {
       pedidoRecibido: new Date(2024, 11, 12, 16, 45),
-      cancelado: new Date(2024, 11, 12, 17, 00),
+      cancelado: new Date(2024, 11, 12, 17, 0),
     }
   },
   {
@@ -128,14 +128,14 @@ const sampleOrders: CustomerOrder[] = [
     timeline: {
       pedidoRecibido: new Date(2024, 11, 10, 9, 20),
       enPreparacion: new Date(2024, 11, 10, 9, 35),
-      listo: new Date(2024, 11, 10, 10, 00),
+      listo: new Date(2024, 11, 10, 10, 0),
       entregado: new Date(2024, 11, 10, 10, 30),
     }
   },
   {
     id: "5",
     orderNumber: "SHI-2024-0145",
-    date: new Date(2024, 11, 8, 18, 00),
+    date: new Date(2024, 11, 8, 18, 0),
     status: "entregado",
     deliveryMethod: "delivery",
     items: [
@@ -150,7 +150,7 @@ const sampleOrders: CustomerOrder[] = [
     paymentMethod: "yape",
     address: "Av. Los Álamos 123, San Isidro",
     timeline: {
-      pedidoRecibido: new Date(2024, 11, 8, 18, 00),
+      pedidoRecibido: new Date(2024, 11, 8, 18, 0),
       enPreparacion: new Date(2024, 11, 8, 18, 15),
       listo: new Date(2024, 11, 8, 18, 40),
       enCamino: new Date(2024, 11, 8, 18, 50),
