@@ -4,10 +4,6 @@ import Link from "next/link"
 import { 
   Truck, 
   Store, 
-  Smartphone, 
-  CreditCard, 
-  Banknote,
-  ShieldCheck,
   AlertCircle,
   ArrowRight
 } from "lucide-react"
@@ -24,18 +20,9 @@ interface OrderSummaryProps {
   total: number
   deliveryMethod: "delivery" | "pickup"
   onDeliveryMethodChange: (method: "delivery" | "pickup") => void
-  paymentMethod: string
-  onPaymentMethodChange: (method: string) => void
   hasLowStockItems: boolean
   itemCount: number
 }
-
-const paymentMethods = [
-  { id: "yape", name: "Yape", icon: Smartphone, color: "text-purple-600" },
-  { id: "plin", name: "Plin", icon: Smartphone, color: "text-teal-600" },
-  { id: "tarjeta", name: "Tarjeta", icon: CreditCard, color: "text-blue-600" },
-  { id: "efectivo", name: "Efectivo", icon: Banknote, color: "text-green-600" },
-]
 
 export function OrderSummary({
   subtotal,
@@ -43,8 +30,6 @@ export function OrderSummary({
   total,
   deliveryMethod,
   onDeliveryMethodChange,
-  paymentMethod,
-  onPaymentMethodChange,
   hasLowStockItems,
   itemCount,
 }: OrderSummaryProps) {
@@ -144,43 +129,6 @@ export function OrderSummary({
             </span>
             <span className="text-xs text-muted-foreground">Gratis</span>
           </Label>
-        </RadioGroup>
-      </div>
-
-      {/* Payment Method */}
-      <div className="rounded-xl border bg-card p-6 shadow-sm">
-        <h3 className="text-base font-semibold text-foreground mb-4">
-          Método de pago
-        </h3>
-        <RadioGroup
-          value={paymentMethod}
-          onValueChange={onPaymentMethodChange}
-          className="grid grid-cols-2 gap-3"
-        >
-          {paymentMethods.map((method) => (
-            <Label
-              key={method.id}
-              htmlFor={method.id}
-              className={cn(
-                "flex flex-col items-center gap-2 rounded-lg border-2 p-3 cursor-pointer transition-all",
-                paymentMethod === method.id
-                  ? "border-primary bg-primary/5"
-                  : "border-border hover:border-primary/50"
-              )}
-            >
-              <RadioGroupItem value={method.id} id={method.id} className="sr-only" />
-              <method.icon className={cn(
-                "h-5 w-5",
-                paymentMethod === method.id ? "text-primary" : method.color
-              )} />
-              <span className={cn(
-                "text-sm font-medium",
-                paymentMethod === method.id ? "text-primary" : "text-foreground"
-              )}>
-                {method.name}
-              </span>
-            </Label>
-          ))}
         </RadioGroup>
       </div>
 

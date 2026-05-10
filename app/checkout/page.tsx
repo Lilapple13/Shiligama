@@ -54,7 +54,6 @@ const initialCart: CartItem[] = [
 export default function CheckoutPage() {
   const [cart, setCart] = useState<CartItem[]>(initialCart)
   const [deliveryMethod, setDeliveryMethod] = useState<"delivery" | "pickup">("delivery")
-  const [paymentMethod, setPaymentMethod] = useState<string>("yape")
 
   const updateQuantity = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return
@@ -144,8 +143,6 @@ export default function CheckoutPage() {
               total={total}
               deliveryMethod={deliveryMethod}
               onDeliveryMethodChange={setDeliveryMethod}
-              paymentMethod={paymentMethod}
-              onPaymentMethodChange={setPaymentMethod}
               hasLowStockItems={hasLowStockItems}
               itemCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
             />
