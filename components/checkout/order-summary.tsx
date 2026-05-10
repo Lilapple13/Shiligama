@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { 
   Truck, 
   Store, 
@@ -7,7 +8,8 @@ import {
   CreditCard, 
   Banknote,
   ShieldCheck,
-  AlertCircle
+  AlertCircle,
+  ArrowRight
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -193,9 +195,11 @@ export function OrderSummary({
       )}
 
       {/* Confirm Button */}
-      <Button className="w-full h-12 text-base font-semibold gap-2" size="lg">
-        <ShieldCheck className="h-5 w-5" />
-        Confirmar pedido
+      <Button asChild className="w-full h-12 text-base font-semibold gap-2" size="lg">
+        <Link href="/checkout/pago">
+          Continuar al pago
+          <ArrowRight className="h-5 w-5" />
+        </Link>
       </Button>
 
       {/* Security Note */}
