@@ -1,11 +1,31 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Mail, Lock, Eye, EyeOff, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+
+// Default test accounts
+const TEST_ACCOUNTS = {
+  administrador: {
+    email: "test1234@admin.com",
+    password: "eldelegadolavandoselasmanos",
+    redirect: "/admin"
+  },
+  trabajador: {
+    email: "trabajador@shiligama.com",
+    password: "trabajador123",
+    redirect: "/admin"
+  },
+  cliente: {
+    email: "cliente@shiligama.com", 
+    password: "cliente123",
+    redirect: "/catalogo"
+  }
+}
 
 type Role = "cliente" | "trabajador" | "administrador"
 
@@ -14,11 +34,14 @@ interface LoginFormProps {
 }
 
 export function LoginForm({ onRegisterClick }: LoginFormProps) {
+  const router = useRouter()
   const [selectedRole, setSelectedRole] = useState<Role>("cliente")
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const roles: { key: Role; label: string }[] = [
     { key: "cliente", label: "Cliente" },
@@ -28,7 +51,19 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("[v0] Login attempt:", { email, selectedRole, rememberMe })
+    setError("")
+    setIsLoading(true)
+
+    const account = TEST_ACCOUNTS[selectedRole]
+    
+    // Validate credentials
+    if (email === account.email && password === account.password) {
+      // Successful login - redirect based on role
+      router.push(account.redirect)
+    } else {
+      setError("Correo electrónico o contraseña incorrectos")
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -73,6 +108,13 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
 
       {/* Login form */}
       <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Error message */}
+        {error && (
+          <div className="bg-destructive/10 border border-destructive/20 text-destructive text-sm p-3 rounded-lg">
+            {error}
+          </div>
+        )}
+
         <div className="space-y-2">
           <Label htmlFor="email" className="text-foreground font-medium">
             Correo electrónico
@@ -146,9 +188,10 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
 
         <Button
           type="submit"
+          disabled={isLoading}
           className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base"
         >
-          Iniciar sesión
+          {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
         </Button>
       </form>
 
@@ -163,6 +206,15 @@ export function LoginForm({ onRegisterClick }: LoginFormProps) {
             Regístrate aquí
           </button>
         </p>
+      </div>
+
+      {/* Test credentials hint */}
+      <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
+        <p className="text-xs font-medium text-muted-foreground mb-2">Credenciales de prueba ({selectedRole}):</p>
+        <div className="text-xs text-muted-foreground space-y-1">
+          <p><span className="font-medium">Email:</span> {TEST_ACCOUNTS[selectedRole].email}</p>
+          <p><span className="font-medium">Contraseña:</span> {TEST_ACCOUNTS[selectedRole].password}</p>
+        </div>
       </div>
     </div>
   )
