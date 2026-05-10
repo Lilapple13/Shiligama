@@ -86,15 +86,17 @@ export function CatalogNavbar({ cartCount }: CatalogNavbarProps) {
             </Sheet>
 
             {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
-                  {cartCount}
-                </Badge>
-              )}
-              <span className="sr-only">Carrito ({cartCount} items)</span>
-            </Button>
+            <Link href="/checkout">
+              <Button variant="ghost" size="icon" className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                {cartCount > 0 && (
+                  <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
+                    {cartCount}
+                  </Badge>
+                )}
+                <span className="sr-only">Carrito ({cartCount} items)</span>
+              </Button>
+            </Link>
 
             {/* User Menu */}
             <DropdownMenu>
