@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Search, Bell, ChevronDown } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -36,13 +37,15 @@ export function AdminTopbar() {
         {/* Right section */}
         <div className="flex items-center gap-2 lg:gap-4">
           {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="h-5 w-5" />
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
-              3
-            </Badge>
-            <span className="sr-only">Notificaciones</span>
-          </Button>
+          <Link href="/admin/notificaciones">
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell className="h-5 w-5" />
+              <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
+                8
+              </Badge>
+              <span className="sr-only">Notificaciones (8 sin leer)</span>
+            </Button>
+          </Link>
 
           {/* User menu */}
           <DropdownMenu>
