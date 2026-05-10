@@ -41,9 +41,9 @@ export function AdminTopbar() {
             <Button variant="ghost" size="icon" className="relative">
               <Bell className="h-5 w-5" />
               <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
-                8
+                4
               </Badge>
-              <span className="sr-only">Notificaciones (8 sin leer)</span>
+              <span className="sr-only">Notificaciones (4 sin leer)</span>
             </Button>
           </Link>
 
