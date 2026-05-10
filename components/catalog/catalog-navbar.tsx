@@ -116,9 +116,11 @@ export function CatalogNavbar({ cartCount }: CatalogNavbarProps) {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Package className="mr-2 h-4 w-4" />
-                  Mis Pedidos
+                <DropdownMenuItem asChild>
+                  <Link href="/mis-pedidos">
+                    <Package className="mr-2 h-4 w-4" />
+                    Mis Pedidos
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
@@ -153,7 +155,7 @@ export function CatalogNavbar({ cartCount }: CatalogNavbarProps) {
                     Catalogo
                   </Link>
                   <Link
-                    href="#"
+                    href="/mis-pedidos"
                     className="flex items-center gap-3 rounded-lg px-3 py-2 text-foreground hover:bg-secondary transition-colors"
                   >
                     <Package className="h-5 w-5" />
