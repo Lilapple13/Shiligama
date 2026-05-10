@@ -18,7 +18,7 @@ const TEST_ACCOUNTS = {
   trabajador: {
     email: "trabajador@shiligama.com",
     password: "trabajador123",
-    redirect: "/admin"
+    redirect: "/trabajador"
   },
   cliente: {
     email: "cliente@shiligama.com", 

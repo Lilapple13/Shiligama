@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { AdminSidebar } from "@/components/admin/admin-sidebar"
-import { AdminTopbar } from "@/components/admin/admin-topbar"
+import { TrabajadorSidebar } from "@/components/trabajador/trabajador-sidebar"
+import { TrabajadorTopbar } from "@/components/trabajador/trabajador-topbar"
 import { OrdersHeader } from "@/components/admin/orders/orders-header"
 import { OrdersTabs } from "@/components/admin/orders/orders-tabs"
 import { OrderCard } from "@/components/admin/orders/order-card"
@@ -158,9 +158,9 @@ const SAMPLE_ORDERS: Order[] = [
   },
 ]
 
-export default function OrdersPage() {
+export default function TrabajadorOrdersPage() {
   const [orders, setOrders] = useState<Order[]>(SAMPLE_ORDERS)
-  const [activeTab, setActiveTab] = useState<OrderStatus | "todos">("todos")
+  const [activeTab, setActiveTab] = useState<OrderStatus | "todos">("pendiente")
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [detailOpen, setDetailOpen] = useState(false)
@@ -217,15 +217,41 @@ export default function OrdersPage() {
     setDetailOpen(true)
   }
 
+  // Refresh handler
+  const handleRefresh = () => {
+    // In a real app, this would fetch fresh data
+    console.log("[v0] Refreshing orders...")
+  }
+
   return (
     <div className="flex h-screen bg-background">
-      <AdminSidebar />
+      <TrabajadorSidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden lg:ml-64">
-        <AdminTopbar />
+        <TrabajadorTopbar title="Gestión de Pedidos" onRefresh={handleRefresh} />
         
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto space-y-6">
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <p className="text-sm text-amber-700">Pendientes</p>
+                <p className="text-2xl font-bold text-amber-800">{statusCounts.pendiente}</p>
+              </div>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-sm text-blue-700">En preparación</p>
+                <p className="text-2xl font-bold text-blue-800">{statusCounts.preparacion}</p>
+              </div>
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <p className="text-sm text-purple-700">Listos</p>
+                <p className="text-2xl font-bold text-purple-800">{statusCounts.listo}</p>
+              </div>
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p className="text-sm text-green-700">Entregados hoy</p>
+                <p className="text-2xl font-bold text-green-800">{statusCounts.entregado}</p>
+              </div>
+            </div>
+
             {/* Header */}
             <OrdersHeader 
               searchQuery={searchQuery}
